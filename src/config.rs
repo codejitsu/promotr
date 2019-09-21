@@ -4,6 +4,7 @@ use std::fmt;
 
 pub struct Config {
     account: String,
+    password: String,
     hashtags: Vec<String>
 }
 
@@ -19,6 +20,7 @@ impl Config {
 
         Config {
             account: settings.get("account").ok().unwrap_or(String::from("testaccount")),
+            password: settings.get("password").ok().unwrap_or(String::from("mytestpassword")),
             hashtags: settings.get("hashtags").ok().unwrap_or(Vec::new())
         }
     }
@@ -26,6 +28,7 @@ impl Config {
 
 impl fmt::Display for Config {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "[ account: '{}', hashtags: '{}' ]", self.account, self.hashtags.join(", "))
+        write!(f, "[ account: '{}', password: '{}', hashtags: '{}' ]", self.account,
+            self.password, self.hashtags.join(", "))
     }
 }
