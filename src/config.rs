@@ -24,6 +24,14 @@ impl Config {
             hashtags: settings.get("hashtags").ok().unwrap_or(Vec::new())
         }
     }
+
+    pub fn update_account(&mut self, acc: &str) {
+        self.account = String::from(acc);
+    }
+
+    pub fn update_password(&mut self, pwd: &str) {
+        self.password = String::from(pwd);
+    }
 }
 
 impl fmt::Display for Config {
