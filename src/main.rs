@@ -1,4 +1,9 @@
 mod config;
+mod instagram_promotr;
+
+extern crate hyper;
+
+use hyper::rt;
 use std::collections::HashMap;
 
 fn parse_param(param: &str) -> Option<(&str, &str)> {
@@ -36,4 +41,6 @@ fn main() {
     }
 
     println!("Using config: {}", app_config);
+
+    rt::run(instagram_promotr::InstaPromoter::promote_me(&mut app_config));
 }

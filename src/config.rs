@@ -32,6 +32,14 @@ impl Config {
     pub fn update_password(&mut self, pwd: &str) {
         self.password = String::from(pwd);
     }
+
+    pub fn account(&mut self) -> String {
+        self.account.clone()
+    }
+
+    pub fn password(&mut self) -> String {
+        self.password.clone()
+    }
 }
 
 impl fmt::Display for Config {
