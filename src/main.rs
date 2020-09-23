@@ -29,7 +29,15 @@ pub struct Opts {
 fn csrf_token() -> Result<String, Error> {
     let csrf_re = Regex::new(CSRF_RE).unwrap();
 
-    let token_result = reqwest::blocking::get(INSTAGRAM_URL)?
+    let response = reqwest::blocking::get(INSTAGRAM_URL)?;
+
+    let cookies_result: Vec<_> = response
+        .cookies()
+        .collect();
+
+    println!("cookies: {:?}", cookies_result);
+
+    let token_result = response
         .text()
         .map(|body| 
             csrf_re.captures_iter(&body)
